@@ -83,7 +83,8 @@ let questions = {
       text: 'be a front-end developer',
     },
     optionTwo: {
-      votes: ['sarahedo'],
+      //'sarahedo'
+      votes: [],
       text: 'be a back-end developer'
     }
   },

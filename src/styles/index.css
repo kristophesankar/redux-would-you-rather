@@ -6,9 +6,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.app-heading {
+  text-align: center;
+  width:100%;
+  background: #eee;
+  font-weight:bolder;
+  padding:10px;
+  font-size: 20px;
+}
+
+.center {
+  text-align: center;
 }
