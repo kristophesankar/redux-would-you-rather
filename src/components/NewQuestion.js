@@ -24,14 +24,15 @@ class NewQuestion extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const {optionOne, optionTwo } = this.state
-    const {dispatch, authedUser } = this.props
+    const {dispatch, authedUser} = this.props
     dispatch(handleAddQuestion(optionOne, optionTwo, authedUser ))
-
+    this.props.history.push('/home')
   }
 
   render () {
     return (
       <div className='center poll-card top-10'>
+
       <h3>Create New Question</h3>
       <form>
         <label>Would You Rather</label>
@@ -51,8 +52,10 @@ class NewQuestion extends Component {
           className='input-options'
           onChange={this.handleOptionTwo}
           placeholder='Enter option two here...' />
-        <button className="sign-in-button" onClick={this.handleSubmit} >Submit</button>
+        <button type='submit' className="sign-in-button" onClick={this.handleSubmit} >Submit</button>
+
       </form>
+
       </div>
     )
   }
