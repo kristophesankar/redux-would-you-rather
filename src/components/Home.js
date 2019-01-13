@@ -8,6 +8,7 @@ class Home extends Component {
   render () {
     return (
       <Tabs>
+      {console.log(this.props)}
         <h3 className="center">Home</h3>
         <TabList className='center'>
           <Tab>Unanswered Questions</Tab>
@@ -31,10 +32,10 @@ function mapStateToProps ({ users, authedUser, questions }) {
   return {
     answeredQuestions: Object.values(questions).filter((question) => {
       return Object.keys(userAnswers).includes(question.id)
-    }),
+    }).sort((a, b) => b.timestamp - a.timestamp),
     unansweredQuestions: Object.values(questions).filter((question) => {
       return !(Object.keys(userAnswers).includes(question.id))
-    })
+    }).sort((a, b) => b.timestamp - a.timestamp)
   }
 }
 

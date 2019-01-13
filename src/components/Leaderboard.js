@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
@@ -12,9 +11,9 @@ class Leaderboard extends Component {
         <h3>Leaderboard</h3>
         {console.log(this.props)}
         {
-          leaders.map((user) => (
-            <div key={user.id} className="poll-card">
-              <div className="poll-user"><h4>{user.name} asks:</h4></div>
+          leaders.map((user, index) => (
+            <div key={user.leaderId} className="poll-card">
+              <div className="poll-user"><h4>{user.leaderName} asks:</h4></div>
               <div className="left">
                 <img className="poll-card-avatar" alt={user.avatarURL} src={user.avatarURL} />
               </div>
@@ -37,8 +36,8 @@ function mapStateToProps ({ questions, users }) {
 
   const leaders = Object.keys(users).map((userId) => ({
     name: users[userId].name,
-    id: userId,
-    name: users[userId].name,
+    leaderId: userId,
+    leaderName: users[userId].name,
     avatarURL: users[userId].avatarURL,
     score: Object.keys(users[userId].answers).length + Object.keys(users[userId].questions).length,
     answered: Object.keys(users[userId].answers).length,
