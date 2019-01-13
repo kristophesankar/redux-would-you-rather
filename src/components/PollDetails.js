@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom'
 import { handleSaveAnswerQuestion } from '../actions/questions'
 import { handleSaveAnswerUser } from '../actions/users'
 
+// details of an individual poll
 class PollDetails extends Component{
 
+  // define component state
   state = {
     option: ''
   }
+
+  // set option value when user selects radios
 
   handleChange = (event) => {
     this.setState({
@@ -16,8 +20,9 @@ class PollDetails extends Component{
     })
   }
 
+  // handle voting functionality
+  // dispatch actions
   handleVote = (event) => {
-
     const {dispatch, authedUser, pollId} = this.props
     const answer = this.state.option
     const qid = pollId
@@ -27,20 +32,20 @@ class PollDetails extends Component{
 
   handleSetChoice = () => {
     const { userAnswer } = this.props
-
     if(userAnswer !== null)
       {this.setState({
         option: this.props.userAnswer
       })
-
     }
-
   }
 
+  // set user past choice on component mount
   componentDidMount() {
      this.handleSetChoice()
   }
 
+  // show indivual poll details.
+  //user can select options and submit choice
   render(){
     const { user, question } = this.props
     return (
@@ -83,10 +88,14 @@ class PollDetails extends Component{
 
 function mapStateToProps ({questions, users, authedUser}, props) {
 
+  // get question id from address bar
   const { id } = props.match.params
+
+  // get question from id
   const question = questions[id]
   const userAnswer = users[authedUser].answers[id]
 
+  // return props to render a question
   return {
     pollId: id,
     question,

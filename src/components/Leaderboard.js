@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-
+// shows the users who are leading the game
 class Leaderboard extends Component {
   render () {
     const { leaders } = this.props
-
     return (
       <div className='center'>
         <h3>Leaderboard</h3>
@@ -34,6 +33,7 @@ class Leaderboard extends Component {
 
 function mapStateToProps ({ questions, users }) {
 
+  // format users into an array of users with their scores
   const leaders = Object.keys(users).map((userId) => ({
     name: users[userId].name,
     leaderId: userId,
@@ -44,6 +44,7 @@ function mapStateToProps ({ questions, users }) {
     questions: Object.keys(users[userId].questions).length
   }))
 
+  // mount questions and sorted users to the component props
   return {
     questions: Object.values(questions),
     leaders: leaders.sort((a, b) =>  (b.answered + b.questions) - (a.answered + a.questions))

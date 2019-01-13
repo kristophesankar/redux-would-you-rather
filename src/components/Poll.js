@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+// an individual poll on the home page
 class Poll extends Component {
-
-
   render () {
     const { question, user, id } = this.props
-
     return (
-
       <div>
         <div className="poll-card">
           <div className="poll-user"><h4>{user.name} asks:</h4></div>

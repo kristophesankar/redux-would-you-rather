@@ -1,3 +1,5 @@
+// API for handling data from the fake database
+
 import {
   _getUsers,
   _getQuestions,

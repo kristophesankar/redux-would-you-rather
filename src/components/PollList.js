@@ -1,6 +1,7 @@
 import React from 'react'
 import Poll from '../components/Poll'
 
+// list all polls
 const PollList = (props) => {
   const { questions } = props
   return (

@@ -4,6 +4,7 @@ import PollList from '../components/PollList'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 
+// shows the home page with unanswered an answered polls
 class Home extends Component {
   render () {
     return (
@@ -13,11 +14,9 @@ class Home extends Component {
           <Tab>Unanswered Questions</Tab>
           <Tab>Answered Questions</Tab>
         </TabList>
-
         <TabPanel className='center'>
           <PollList key='unansweredQuestions' questions={this.props.unansweredQuestions}/>
         </TabPanel>
-
         <TabPanel className='center'>
           <PollList key='answeredQuestions' questions={this.props.answeredQuestions}/>
         </TabPanel>
@@ -28,6 +27,7 @@ class Home extends Component {
 
 function mapStateToProps ({ users, authedUser, questions }) {
   const userAnswers = users[authedUser].answers;
+  // make answered and non answered questions availabe to the component properties
   return {
     answeredQuestions: Object.values(questions).filter((question) => {
       return Object.keys(userAnswers).includes(question.id)

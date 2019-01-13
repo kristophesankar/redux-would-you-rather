@@ -15,10 +15,12 @@ import PromptLogin from '../components/PromptLogin'
 
 class App extends Component {
 
+  // mount initial data for the app from the fake database
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
 
+  // render all routes for handling page navigation
   render() {
     return (
         <Router>

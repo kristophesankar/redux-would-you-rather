@@ -3,9 +3,7 @@ import signInLogo from'../assets/BlueCircle.png'
 import { connect } from 'react-redux'
 import { handleSetAuthedUser } from '../actions/authedUser'
 
-
-//TODO: Figure out how to dispatch
-
+// handles the login functionality of the app
 class Login extends Component {
   state = {
     selectedOption: 'johndoe'
@@ -24,10 +22,9 @@ class Login extends Component {
     this.props.history.push(`/home`)
   }
 
+  // shows list of users to login from
   render () {
-
     const { options } = this.props
-
     return (
       <div className="login-container">
         <div className="login-card">
@@ -50,6 +47,7 @@ class Login extends Component {
 }
 
 function mapStateToProps ({ users }) {
+  // mount the user options to login
   return {
     options: Object.values(users).map((user) => {
       return {value: user.id, label: user.name }

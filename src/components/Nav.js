@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions/authedUser'
 
+// handles defining all navigation links
 class Nav extends Component {
 
   handleLogout = (e) => {

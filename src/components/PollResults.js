@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Line } from 'rc-progress'
 import { connect } from 'react-redux'
 
+// show poll results
 class PollResults extends Component {
   render () {
     const { user, question, totalVotes, yourAnswer } = this.props

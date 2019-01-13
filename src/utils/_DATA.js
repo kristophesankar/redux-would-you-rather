@@ -1,3 +1,7 @@
+// added avatars. I do not own these images:
+// https://tylermcginnis.com/would-you-rather/sarah.jpg
+// https://tylermcginnis.com/would-you-rather/tyler.jpg
+
 let users = {
   sarahedo: {
     id: 'sarahedo',
