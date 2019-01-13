@@ -5,9 +5,9 @@ Would You Rather Game built in React / Redux for submission to Udacity's React N
 
 To get started:
 
-- install project with npm install
-- start server with npm start
-- go to http://localhost:3000 to view the app
+- install project with `npm install`
+- start server with `npm start`
+- go to `http://localhost:3000` to view the app
 
 ## Usage
 
