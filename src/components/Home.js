@@ -8,7 +8,6 @@ class Home extends Component {
   render () {
     return (
       <Tabs>
-      {console.log(this.props)}
         <h3 className="center">Home</h3>
         <TabList className='center'>
           <Tab>Unanswered Questions</Tab>

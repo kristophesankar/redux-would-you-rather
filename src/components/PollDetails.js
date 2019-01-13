@@ -23,7 +23,22 @@ class PollDetails extends Component{
     const qid = pollId
     dispatch(handleSaveAnswerQuestion({ authedUser, qid, answer }))
     dispatch(handleSaveAnswerUser({ authedUser, qid, answer }))
+  }
 
+  handleSetChoice = () => {
+    const { userAnswer } = this.props
+
+    if(userAnswer !== null)
+      {this.setState({
+        option: this.props.userAnswer
+      })
+
+    }
+
+  }
+
+  componentDidMount() {
+     this.handleSetChoice()
   }
 
   render(){
@@ -70,12 +85,14 @@ function mapStateToProps ({questions, users, authedUser}, props) {
 
   const { id } = props.match.params
   const question = questions[id]
+  const userAnswer = users[authedUser].answers[id]
 
   return {
     pollId: id,
     question,
     user: users[question.author],
-    authedUser
+    authedUser,
+    userAnswer
   }
 }
 
