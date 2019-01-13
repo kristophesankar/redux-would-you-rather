@@ -1,9 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux'
+import React from 'react'
 import Poll from '../components/Poll'
 
 const PollList = (props) => {
-  console.log(props)
     const { questions } = props
     return (
       <div>

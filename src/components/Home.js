@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Poll from '../components/Poll'
 import PollList from '../components/PollList'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 
-// TODO: Change to answered when user votes
-
 class Home extends Component {
   render () {
-
     return (
-
       <Tabs>
         <h3 className="center">Home</h3>
-
         <TabList className='center'>
           <Tab>Unanswered Questions</Tab>
           <Tab>Answered Questions</Tab>
@@ -32,13 +26,14 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps ({ questions }) {
+function mapStateToProps ({ users, authedUser, questions }) {
+  const userAnswers = users[authedUser].answers;
   return {
-    unansweredQuestions: Object.values(questions).filter((question) => {
-      return question.optionOne.votes.length === 0 && question.optionTwo.votes.length === 0
-    }),
     answeredQuestions: Object.values(questions).filter((question) => {
-      return question.optionOne.votes.length > 0 || question.optionTwo.votes.length > 0
+      return Object.keys(userAnswers).includes(question.id)
+    }),
+    unansweredQuestions: Object.values(questions).filter((question) => {
+      return !(Object.keys(userAnswers).includes(question.id))
     })
   }
 }

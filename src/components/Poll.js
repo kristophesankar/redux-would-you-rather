@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-
 class Poll extends Component {
+
+
   render () {
-    const { question } = this.props
+    const { question, user, id } = this.props
 
     return (
+
       <div>
-        <div>
-          Would you rather: {question.optionOne.text} ({question.optionOne.votes.length} votes) or {question.optionTwo.text} ({question.optionTwo.votes.length} votes)
+        <div className="poll-card">
+          <div className="poll-user"><h4>{user.name} asks:</h4></div>
+          <div className="left">
+            <img className="poll-card-avatar" alt={user.avatarURL} src={user.avatarURL} />
+          </div>
+          <div className="right">
+            <b>Would you rather</b>
+            <br/>
+            <p className="truncate center">{question.optionOne.text}</p>
+          </div>
+          <Link className='sign-in-button' to={`/questions/${id}`} >
+            <button className="sign-in-button">View poll</button>
+          </Link>
         </div>
         <br/>
       </div>
@@ -17,10 +31,12 @@ class Poll extends Component {
   }
 }
 
-function mapStateToProps ({ questions }, { id }) {
+function mapStateToProps ({ questions, users }, { id }) {
   const question = questions[id]
+  const user = users[question.author]
   return {
-    question
+    question,
+    user
   }
 }
 
