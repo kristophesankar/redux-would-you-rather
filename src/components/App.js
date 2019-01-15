@@ -11,7 +11,6 @@ import NewQuestion from '../components/NewQuestion'
 import Login from '../components/Login'
 import Nav from '../components/Nav'
 import NoMatch from '../components/NoMatch'
-import PromptLogin from '../components/PromptLogin'
 
 class App extends Component {
 
@@ -37,7 +36,7 @@ class App extends Component {
                     </Fragment>
                   : <Fragment>
                       <Switch>
-                        <Route path="/home" authedUser={this.props.authedUser} exact component={Home} />
+                        <Route path="/" authedUser={this.props.authedUser} exact component={Home} />
                         <Route path="/questions/:id" exact component={PollDetails} />
                         <Route path="/results/:id" exact component={PollResults} />
                         <Route path="/leaderboard" exact component={Leaderboard} />
@@ -46,12 +45,9 @@ class App extends Component {
                       </Switch>
                     </Fragment>
               }
-
-
           </div>
           </Fragment>
         </Router>
-
     )
   }
 }

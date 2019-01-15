@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import { Line } from 'rc-progress'
 import { connect } from 'react-redux'
-import NoMatch from '../components/NoMatch'
 
 // show poll results
-class PollResults extends Component {
+class PollResultsList extends Component {
   render () {
-    const { user, question, totalVotes, yourAnswer, isInvalid } = this.props
+    const { user, question, totalVotes, yourAnswer } = this.props
     return (
       <div className="center top-10">
-       {
-        (isInvalid === false)
-        ? (
+       {console.log(this.props)}
         <div className="poll-card">
           <div className="poll-user"><h4>Results by {user.name} </h4></div>
           <div className="left">
@@ -45,9 +42,7 @@ class PollResults extends Component {
             <br />
             </div>
           </div>
-        </div>)
-        : <NoMatch />
-      }
+        </div>
         <br/>
       </div>
     )
@@ -56,17 +51,8 @@ class PollResults extends Component {
 
 function mapStateToProps ({questions, users, authedUser}, props) {
 
-  const { id } = props.match.params
+  const { id } = props
   const question = questions[id]
-
-  if(typeof question === 'undefined'){
-    return {
-      isInvalid: true,
-      user: '',
-      question: ''
-    }
-  }
-
   const totalVotes = question.optionOne.votes.length + question.optionTwo.votes.length
   const userAnswers = users[authedUser].answers
   return {
@@ -76,9 +62,8 @@ function mapStateToProps ({questions, users, authedUser}, props) {
     yourAnswer: Object.entries(userAnswers).filter((answer) => {
       return answer[0] === id
     }),
-    totalVotes,
-    isInvalid: false
+    totalVotes
   }
 }
 
-export default connect(mapStateToProps)(PollResults)
+export default connect(mapStateToProps)(PollResultsList)

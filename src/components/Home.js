@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PollResultsList from '../components/PollResultsList'
 import PollList from '../components/PollList'
+
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 
@@ -18,7 +20,12 @@ class Home extends Component {
           <PollList key='unansweredQuestions' questions={this.props.unansweredQuestions}/>
         </TabPanel>
         <TabPanel className='center'>
-          <PollList key='answeredQuestions' questions={this.props.answeredQuestions}/>
+          {
+            this.props.answeredQuestions.map((answer) => (
+              <PollResultsList key='answeredQuestions' id={answer.id}/>
+            ))
+          }
+
         </TabPanel>
       </Tabs>
     )

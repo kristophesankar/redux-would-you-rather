@@ -20,13 +20,20 @@ class Login extends Component {
     const { dispatch } = this.props
     dispatch(handleSetAuthedUser(this.state.selectedOption))
     // this.props.history.push(`/home`)
+    // this.setState({toHome: true})
   }
 
   // shows list of users to login from
   render () {
     const { options } = this.props
+
+    if(this.state.toHome === true){
+
+    }
+
     return (
       <div className="login-container">
+      {console.log(this.state)}
         <div className="login-card">
           <h3 className="login-heading">Welcome to the Would You Rather App</h3>
           <img className="signInLogo" alt={signInLogo} src={signInLogo} />

@@ -16,7 +16,7 @@ class Nav extends Component {
 
     return (
       <nav className='center'>
-        <NavLink className='nav-link' to='/home' exact activeClassName='active'>
+        <NavLink className='nav-link' to='/' exact activeClassName='active'>
           Home
         </NavLink>
         &nbsp;&nbsp;
