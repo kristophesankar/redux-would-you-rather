@@ -19,7 +19,7 @@ class Login extends Component {
   handleLogin = (e) => {
     const { dispatch } = this.props
     dispatch(handleSetAuthedUser(this.state.selectedOption))
-    this.props.history.push(`/home`)
+    // this.props.history.push(`/home`)
   }
 
   // shows list of users to login from

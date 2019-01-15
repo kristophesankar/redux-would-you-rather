@@ -29,23 +29,25 @@ class App extends Component {
           <div>
             <div className='app-heading'>Would You Rather?</div>
             <Nav authedUser={this.props.authedUser}/>
-            <Switch>
+
               {
                 this.props.authed === true
                   ? <Fragment>
-                      <Route component={PromptLogin} />
-                      <Route path="/" exact component={Login} />
+                      <Route path="/" component={Login} />
                     </Fragment>
                   : <Fragment>
-                      <Route path="/home" authedUser={this.props.authedUser} exact component={Home} />
-                      <Route path="/questions/:id" exact component={PollDetails} />
-                      <Route path="/results/:id" exact component={PollResults} />
-                      <Route path="/leaderboard" exact component={Leaderboard} />
-                      <Route path="/add" exact component={NewQuestion} />
+                      <Switch>
+                        <Route path="/home" authedUser={this.props.authedUser} exact component={Home} />
+                        <Route path="/questions/:id" exact component={PollDetails} />
+                        <Route path="/results/:id" exact component={PollResults} />
+                        <Route path="/leaderboard" exact component={Leaderboard} />
+                        <Route path="/add" exact component={NewQuestion} />
+                        <Route component={NoMatch} />
+                      </Switch>
                     </Fragment>
               }
-              <Route component={NoMatch} />
-            </Switch>
+
+
           </div>
           </Fragment>
         </Router>
