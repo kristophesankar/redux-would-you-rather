@@ -22,7 +22,7 @@ class Home extends Component {
         <TabPanel className='center'>
           {
             this.props.answeredQuestions.map((answer) => (
-              <PollResultsList key='answeredQuestions' id={answer.id}/>
+              <PollResultsList key={answer.id} id={answer.id}/>
             ))
           }
 

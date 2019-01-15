@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddQuestion } from '../actions/questions'
+import { handleAddQuestion } from '../actions/shared'
 
 // handles the creation of new questions
 class NewQuestion extends Component {
@@ -31,7 +31,7 @@ class NewQuestion extends Component {
     const {optionOne, optionTwo } = this.state
     const {dispatch, authedUser} = this.props
     dispatch(handleAddQuestion(optionOne, optionTwo, authedUser ))
-    this.props.history.push('/home')
+    this.props.history.push('/')
   }
 
   render () {

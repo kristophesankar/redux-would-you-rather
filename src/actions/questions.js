@@ -1,8 +1,6 @@
-import { saveQuestionAnswer, saveQuestion } from '../utils/api'
-
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER'
-export const ADD_QUESTION = 'ADD_QUESTION'
+export const ADD_QUESTION_ANSWER_Q = 'ADD_QUESTION_ANSWER_Q'
+export const ADD_QUESTION_Q = 'ADD_QUESTION_Q'
 
 export function receiveQuestions (questions) {
   return {
@@ -11,41 +9,18 @@ export function receiveQuestions (questions) {
   }
 }
 
-export function addQuestion (question) {
+export function addQuestionForQuestion (question) {
   return {
-    type: ADD_QUESTION,
+    type: ADD_QUESTION_Q,
     question
   }
 }
 
-function saveAnswer (authedUser, qid, answer) {
+export function saveAnswerForQuestion (authedUser, qid, answer) {
   return {
-    type: ADD_QUESTION_ANSWER,
+    type: ADD_QUESTION_ANSWER_Q,
     authedUser,
     qid,
     answer
-  }
-}
-
-export function handleAddQuestion (optionOne, optionTwo) {
-  return (dispatch, getState) => {
-    const { authedUser } = getState()
-
-    return saveQuestion({optionOneText: optionOne, optionTwoText: optionTwo, author: authedUser})
-    .then((question) => dispatch(addQuestion(question)))
-
-  }
-}
-
-export function handleSaveAnswerQuestion ({ authedUser, qid, answer }) {
-  return (dispatch) => {
-
-    dispatch(saveAnswer({authedUser, qid, answer}))
-
-    return saveQuestionAnswer({authedUser, qid, answer})
-    .catch((error) => {
-      console.warn('There was an error', error)
-      dispatch(saveAnswer({authedUser, qid, answer}))
-    })
   }
 }

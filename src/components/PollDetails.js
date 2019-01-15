@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { handleSaveAnswerQuestion } from '../actions/questions'
-import { handleSaveAnswerUser } from '../actions/users'
+// import { handleSaveAnswerQuestion } from '../actions/questions'
+import { handleSaveAnswer } from '../actions/shared'
 import NoMatch from '../components/NoMatch'
 
 // details of an individual poll
@@ -27,8 +27,7 @@ class PollDetails extends Component{
     const {dispatch, authedUser, pollId} = this.props
     const answer = this.state.option
     const qid = pollId
-    dispatch(handleSaveAnswerQuestion({ authedUser, qid, answer }))
-    dispatch(handleSaveAnswerUser({ authedUser, qid, answer }))
+    dispatch(handleSaveAnswer({ authedUser, qid, answer }))
   }
 
   handleSetChoice = () => {
@@ -54,34 +53,34 @@ class PollDetails extends Component{
        {
         (isInvalid === false)
         ? (<div className="poll-card">
-          <div className="poll-user"><h4>{user.name} asks:</h4></div>
-          <div className="left">
-            <img className="poll-card-avatar" alt={user.avatarURL} src={user.avatarURL} />
-          </div>
-          <div className="right">
-            <b>Would You Rather...</b>
-            <br/>
-            <br/>
-            <form>
-            <input
-              type="radio"
-              checked={this.state.option === "optionOne"}
-              name="options"
-              value="optionOne"
-              onChange={this.handleChange} /> {question.optionOne.text}<br />
-            <input
-              type="radio"
-              checked={this.state.option === "optionTwo"}
-              name="options"
-              value="optionTwo"
-              onChange={this.handleChange}/> {question.optionTwo.text}<br />
-            <br />
-            </form>
-          </div>
-          <Link className='sign-in-button' to={`/results/${this.props.pollId}`} >
-            <button onClick={this.handleVote} className="sign-in-button">Submit</button>
-          </Link>
-        </div>)
+            <div className="poll-user"><h4>{user.name} asks:</h4></div>
+            <div className="left">
+              <img className="poll-card-avatar" alt={user.avatarURL} src={user.avatarURL} />
+            </div>
+            <div className="right">
+              <b>Would You Rather...</b>
+              <br/>
+              <br/>
+              <form>
+              <input
+                type="radio"
+                checked={this.state.option === "optionOne"}
+                name="options"
+                value="optionOne"
+                onChange={this.handleChange} /> {question.optionOne.text}<br />
+              <input
+                type="radio"
+                checked={this.state.option === "optionTwo"}
+                name="options"
+                value="optionTwo"
+                onChange={this.handleChange}/> {question.optionTwo.text}<br />
+              <br />
+              </form>
+            </div>
+            <Link className='sign-in-button' to={`/results/${this.props.pollId}`} >
+              <button onClick={this.handleVote} className="sign-in-button">Submit</button>
+            </Link>
+          </div>)
         : <NoMatch />
       }
         <br/>
@@ -107,7 +106,6 @@ function mapStateToProps ({questions, users, authedUser}, props) {
       question: ''
     }
   }
-
 
   const userAnswer = users[authedUser].answers[id]
 
